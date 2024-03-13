@@ -1,19 +1,21 @@
-import { weatherDescriptions } from "../../../data/weatherDescriptions";
+import Card from "../../../components/Card";
 
-function PrimaryWeather({ currentTemp, weatherCode, todayMaxTemp, todayMinTemp, apparentTemp}) {
+import { weatherDescriptions } from "../../../data/weatherDescriptions";
+import { weatherIcons } from "../../../data/weatherIcons";
+
+function PrimaryWeather({ currentTemp, weatherCode, todayMaxTemp, todayMinTemp, apparentTemp, currentDayOrNight}) {
+  const weatherIcon = weatherIcons.get(weatherCode);
+  const SelectedIcon = currentDayOrNight ? weatherIcon.day : weatherIcon.night;
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
-						<div className="card-body">
-							<h2 className="card-title">Today</h2>
-              <p>{Math.round(currentTemp)}°F</p>
-              <p>{weatherDescriptions[weatherCode]}</p>
-							<p>Feels Like: {Math.round(apparentTemp)}°F</p>
-							<p>H: {Math.round(todayMaxTemp)}° | L: {Math.round(todayMinTemp)}°</p>
-							<p></p>
-						</div>
-					</div>
+    <Card className="custom-class" title="Today">
+        <p>{Math.round(currentTemp)}°F</p>
+        {SelectedIcon  && <SelectedIcon  size={30} />}
+        <p>{weatherDescriptions[weatherCode]}</p>
+        <p>Feels Like: {Math.round(apparentTemp)}°F</p>
+        <p>H: {Math.round(todayMaxTemp)}° L: {Math.round(todayMinTemp)}°</p>
+      </Card>
   )
 }
 
-export default PrimaryWeather
+export default PrimaryWeather;

@@ -1,10 +1,9 @@
+import Card from "../../../components/Card";
 
-
-function SunTime({ sunrise, sunset }) {
+function SunTime({ sunrise, sunset, daylightDuration }) {
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
-						<div className="card-body">
-							<h2 className="card-title">Sunset & Sunrise</h2>
+    <Card className="custom-class" title="Sunset & Sunrise">
+							<p>Daylight: {daylightDuration}</p>
 							<p>
 								Sunrise:{" "}
 								{new Date(sunrise).toLocaleTimeString([], {
@@ -19,8 +18,7 @@ function SunTime({ sunrise, sunset }) {
 									minute: "2-digit",
 								})}
 							</p>
-						</div>
-					</div>
+						</Card>
   )
 }
 

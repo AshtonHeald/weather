@@ -2,7 +2,7 @@ import Weather from "./features/Weather";
 
 function App() {
   return (
-    <div>
+    <div className="font-mono">
       <Weather />
     </div>
   )

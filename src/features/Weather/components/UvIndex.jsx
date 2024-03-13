@@ -1,13 +1,26 @@
-function UvIndex({ uvIndex }) {
-  return (
-    <div className="card w-96 bg-base-100 shadow-xl">
-						<div className="card-body">
-							<h2 className="card-title">UV Index</h2>
-							<p>{uvIndex}</p>
-						</div>
-					</div>
-  )
+import Card from "../../../components/Card";
+
+function getUvIndexLevel(uvIndex) {
+  if (uvIndex <= 2) {
+    return "Low";
+  } else if (uvIndex <= 5) {
+    return "Moderate";
+  } else if (uvIndex <= 7) {
+    return "High";
+  } else if (uvIndex <= 10) {
+    return "Very High";
+  } else {
+    return "Extreme";
+  }
 }
 
-export default UvIndex
+function UvIndex({ uvIndex }) {
+  return (
+    <Card className="custom-class" title="UV Index">
+        <p>{uvIndex}</p>
+        <p>{getUvIndexLevel(uvIndex)}</p>
+      </Card>
+  );
+}
 
+export default UvIndex;
