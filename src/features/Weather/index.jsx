@@ -10,9 +10,12 @@ import Pressure from "./components/Pressure";
 import AirQuality from "./components/AirQuality";
 import DailyForecast from "./components/DailyForecast";
 import HourlyForecast from "./components/HourlyForecast";
+import Local from "./components/Local";
+import Location from "../../features/Location";
+import Card from "../../components/MainCard";
 
-function Weather() {
-	const { weatherData, loading, error } = useWeather();
+function Weather({ location, setLocation }) {
+	const { weatherData, loading, error } = useWeather(location);
 
 	if (loading) {
 		return <p>Loading...</p>;
@@ -24,62 +27,93 @@ function Weather() {
 
 	if (weatherData) {
 		return (
-			<div className="flex">
+			<>
 				<div>
-					<PrimaryWeather
-						currentTemp={weatherData.currentTemp}
-						weatherCode={weatherData.currentWeatherCode}
-						apparentTemp={weatherData.apparentTemp}
-						todayMaxTemp={weatherData.todayMaxTemp}
-						todayMinTemp={weatherData.todayMinTemp}
-						currentDayOrNight={weatherData.currentDayOrNight}
-					/>
-					<DailyForecast
-						dailyWeatherCode={weatherData.dailyWeatherCode}
-						dailyMaxTemp={weatherData.dailyMaxTemp}
-						dailyMinTemp={weatherData.dailyMinTemp}
-						currentDayOrNight={weatherData.currentDayOrNight}
-					/>
+					<Location setLocation={setLocation} />
 				</div>
-				<div>
-					<UvIndex uvIndex={weatherData.uvIndex} />
-					<AirQuality />
+				<div className="flex gap-3">
+					<div className="flex flex-col gap-3">
+						<Local location={location} />
+						<PrimaryWeather
+							currentTemp={weatherData.currentTemp}
+							weatherCode={weatherData.currentWeatherCode}
+							apparentTemp={weatherData.apparentTemp}
+							todayMaxTemp={weatherData.todayMaxTemp}
+							todayMinTemp={weatherData.todayMinTemp}
+							currentDayOrNight={weatherData.currentDayOrNight}
+						/>
+						<DailyForecast
+							dailyWeatherCode={weatherData.dailyWeatherCode}
+							dailyMaxTemp={weatherData.dailyMaxTemp}
+							dailyMinTemp={weatherData.dailyMinTemp}
+							currentDayOrNight={weatherData.currentDayOrNight}
+						/>
+					</div>
+					<div className="flex flex-col gap-3">
+						<Card className="flex gap-3">
+							<div className="flex gap-3">
+								<div className="flex flex-col gap-3">
+									<UvIndex uvIndex={weatherData.uvIndex} />
+									<AirQuality />
+								</div>
+								<div className="flex flex-col gap-3">
+									<SunTime
+										sunrise={weatherData.sunrise}
+										sunset={weatherData.sunset}
+										daylightDuration={
+											weatherData.daylightDuration
+										}
+									/>
+									<Wind
+										windSpeed={weatherData.windSpeed}
+										windDirection={
+											weatherData.windDirection
+										}
+										windGusts={weatherData.windGusts}
+									/>
+									<Visibility
+										visibility={weatherData.visibility}
+									/>
+									<Humidity
+										humidity={weatherData.humidity}
+										dewPoint={weatherData.dewPoint}
+									/>
+									<Precipitation
+										precipitationProbability={
+											weatherData.precipitationProbability
+										}
+										precipitationSum={
+											weatherData.precipitationSum
+										}
+									/>
+									<Pressure
+										surfacePressure={
+											weatherData.surfacePressure
+										}
+									/>
+								</div>
+							</div>
+						</Card>
+						<div>
+							<HourlyForecast
+								hourlyDayOrNight={weatherData.hourlyDayOrNight}
+								hourlyWeatherCode={
+									weatherData.hourlyWeatherCode
+								}
+								hourlyTemp={weatherData.hourlyTemp}
+								currentTemp={weatherData.currentTemp}
+								weatherCode={weatherData.currentWeatherCode}
+								currentDayOrNight={
+									weatherData.currentDayOrNight
+								}
+								hourlyPrecipitationProbability={
+									weatherData.hourlyPrecipitationProbability
+								}
+							/>
+						</div>
+					</div>
 				</div>
-				<div>
-					<SunTime
-						sunrise={weatherData.sunrise}
-						sunset={weatherData.sunset}
-						daylightDuration={weatherData.daylightDuration}
-					/>
-					<Wind
-						windSpeed={weatherData.windSpeed}
-						windDirection={weatherData.windDirection}
-						windGusts={weatherData.windGusts}
-					/>
-					<Visibility visibility={weatherData.visibility} />
-					<Humidity
-						humidity={weatherData.humidity}
-						dewPoint={weatherData.dewPoint}
-					/>
-					<Precipitation
-						precipitationProbability={
-							weatherData.precipitationProbability
-						}
-						precipitationSum={weatherData.precipitationSum}
-					/>
-					<Pressure surfacePressure={weatherData.surfacePressure} />
-				</div>
-				<div>
-					<HourlyForecast
-						hourlyDayOrNight={weatherData.hourlyDayOrNight}
-						hourlyWeatherCode={weatherData.hourlyWeatherCode}
-						hourlyTemp={weatherData.hourlyTemp}
-						hourlyPrecipitationProbability={
-							weatherData.hourlyPrecipitationProbability
-						}
-					/>
-				</div>
-			</div>
+			</>
 		);
 	}
 	return null;
