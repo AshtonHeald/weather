@@ -1,0 +1,131 @@
+.compass {
+  width: 120px;
+  height: 120px;
+  border: 8px solid;
+  border-color: oklch(var(--b1));
+  border-radius: 50%;
+  position: relative;
+}
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: oklch(var(--b1));
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.fromNeedle, .toNeedle {
+  position: absolute;
+  width: 2px;
+  height: 53px; /* same as .compass */
+  background-color: oklch(var(--ac));
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom;
+}
+
+.fromNeedle::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 8.5px;
+  height:8.5px;
+  border: 2px solid;
+  border-color: oklch(var(--ac));
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.toNeedle::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8.5px solid;
+  border-bottom-color: oklch(var(--ac));
+  transform: translateX(-50%);
+}
+
+.markerN, .markerE, .markerS, .markerW {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  line-height: 16px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.markerN {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.markerE {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.markerS {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.markerW {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.markerN::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid;
+  border-bottom-color: oklch(var(--ac));
+  transform: translateX(-50%);
+}
+
+.markerE::before, .markerW::before{
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 2px;
+  background-color: oklch(var(--ac));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.markerE::before {
+  right: -8px;
+}
+
+.markerW::before {
+  left: -8px;
+  
+}
+
+.markerS::before {
+  content: "";
+  position: absolute;
+  height: 8px;
+  width: 2px;
+  background-color: oklch(var(--ac));
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
