@@ -1,4 +1,4 @@
-import Card from "../../../components/Card";
+import SubCard from "../../../components/SubCard";
 import useAirQuality from "../../../hooks/useAirQuality";
 
 const AQI_LEVELS = [
@@ -33,9 +33,9 @@ function AirQuality() {
   if (airQualityData) {
     return (
       <div>
-        <Card className="custom-class" title="Air Quality">
-          <p>{airQualityData.usAQI}</p>
-          <p>{calculateAQILevel(airQualityData.usAQI)}</p>
+        <SubCard className="w-48" title="Air Quality">
+          <div className="badge badge-secondary">{airQualityData.usAQI}</div>
+          <div className="badge badge-secondary">{calculateAQILevel(airQualityData.usAQI)}</div>
           <p>(Measurements in µg/m³)</p>
           <p>PM<sub>10</sub> {airQualityData.particulateMatter10}</p>
           <p>PM<sub>2.5</sub> {airQualityData.particulateMatter2_5}</p>
@@ -43,7 +43,7 @@ function AirQuality() {
           <p>NO<sub>2</sub> {airQualityData.nitrogenDioxide}</p>
           <p>SO<sub>2</sub> {airQualityData.sulphurDioxide}</p>
           <p>O<sub>3</sub> {airQualityData.ozone}</p>
-        </Card>
+        </SubCard>
       </div>
     );
   }

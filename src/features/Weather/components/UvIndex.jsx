@@ -1,4 +1,4 @@
-import Card from "../../../components/Card";
+import SubCard from "../../../components/SubCard";
 
 function getUvIndexLevel(uvIndex) {
   if (uvIndex <= 2) {
@@ -16,10 +16,10 @@ function getUvIndexLevel(uvIndex) {
 
 function UvIndex({ uvIndex }) {
   return (
-    <Card className="custom-class" title="UV Index">
+    <SubCard className="size-48" title="UV Index">
         <p>{uvIndex}</p>
         <p>{getUvIndexLevel(uvIndex)}</p>
-      </Card>
+      </SubCard>
   );
 }
 

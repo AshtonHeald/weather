@@ -1,5 +1,5 @@
 import { weatherIcons } from "../../../data/weatherIcons";
-import Card from "../../../components/Card";
+import Card from "../../../components/MainCard";
 
 function DailyForecast({
 	dailyMaxTemp,
@@ -8,7 +8,7 @@ function DailyForecast({
 	currentDayOrNight,
 }) {
 	return (
-		<Card className="custom-class" title="7 Day Forecast">
+		<Card className="w-52 h-[416px]" title="7 Day Forecast">
 			<ul>
 				{dailyWeatherCode.map((code, index) => {
 					// Calculate the day for each forecast
@@ -26,7 +26,7 @@ function DailyForecast({
 						: weatherIcon.night;
 
 					return (
-						<li key={index} className="flex gap-2">
+						<li key={index} className="flex py-1 justify-between items-center">
 							{dayOfWeek}{" "}
 							{SelectedIcon && <SelectedIcon size={30} />}{" "}
 							<span>

@@ -1,8 +1,8 @@
-import Card from "../../../components/Card";
+import SubCard from "../../../components/SubCard";
 
 function SunTime({ sunrise, sunset, daylightDuration }) {
   return (
-    <Card className="custom-class" title="Sunset & Sunrise">
+    <SubCard className="size-48" title="Sun Time">
 							<p>Daylight: {daylightDuration}</p>
 							<p>
 								Sunrise:{" "}
@@ -18,7 +18,7 @@ function SunTime({ sunrise, sunset, daylightDuration }) {
 									minute: "2-digit",
 								})}
 							</p>
-						</Card>
+						</SubCard>
   )
 }
 

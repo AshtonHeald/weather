@@ -1,4 +1,4 @@
-import Card from "../../../components/Card";
+import SubCard from "../../../components/SubCard";
 
 function Pressure({ surfacePressure }) {
   // Convert hPa to inHg
@@ -10,9 +10,9 @@ function Pressure({ surfacePressure }) {
   const surfacePressureInInHg = hPaToInHg(surfacePressure);
 
   return (
-    <Card class="custom-class" title="Pressure">
+    <SubCard className="size-52" title="Pressure">
       <p>{surfacePressureInInHg.toFixed(2)} inHg</p>
-    </Card>
+    </SubCard>
   );
 }
 

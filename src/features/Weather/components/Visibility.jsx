@@ -1,10 +1,10 @@
-import Card from "../../../components/Card"
+import SubCard from "../../../components/SubCard"
 
 function Visibility({ visibility }) {
   return (
-    <Card class="custom-class" title="Visibility">
+    <SubCard class="w-52" title="Visibility">
   <p>{Math.round(visibility)}mi</p>
-</Card>
+</SubCard>
   )
 }
 
